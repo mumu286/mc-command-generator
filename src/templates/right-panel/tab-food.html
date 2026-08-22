@@ -1,0 +1,159 @@
+<div id="tab-food" class="tab-pane">
+    <!-- 子板块切换按钮 -->
+    <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+        <button class="food-tab-btn active" data-foodtab="consumption" style="background:#1a5a8a; border:none; border-radius:10px; padding:8px 20px; color:white; font-weight:600; cursor:pointer; font-size:13px; transition:all 0.2s; opacity:1;">🍽️ 食物消耗</button>
+        <button class="food-tab-btn" data-foodtab="effect" style="background:#1a5a8a; border:none; border-radius:10px; padding:8px 20px; color:white; font-weight:600; cursor:pointer; font-size:13px; transition:all 0.2s; opacity:0.6;">✨ 食用效果</button>
+        <button class="food-tab-btn" data-foodtab="tool" style="background:#1a5a8a; border:none; border-radius:10px; padding:8px 20px; color:white; font-weight:600; cursor:pointer; font-size:13px; transition:all 0.2s; opacity:0.6;">🔧 工具规则</button>
+    </div>
+
+    <!-- 子面板容器 -->
+    <div class="food-sub-content">
+        <!-- 食物消耗 -->
+        <div id="food-consumption" class="food-sub-panel active">
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">🍎 营养值</label>
+                    <input type="number" id="foodNutrition" placeholder="空" min="0" max="100" step="1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(0 ~ 100)</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">💧 饱和度</label>
+                    <input type="number" id="foodSaturation" placeholder="空" min="0" step="0.1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(0.0 ~ 任意)</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">♾️ 总是可食用</label>
+                    <input type="checkbox" id="foodCanAlwaysEat" style="width:18px;height:18px;accent-color:#4a8af4;cursor:pointer;">
+                    <span style="color:#556;font-size:12px;">(即使饥饿值满也可食用)</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">⏱️ 食用秒数</label>
+                    <input type="number" id="foodEatSeconds" placeholder="空" min="0" step="0.1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(默认 1.6 秒)</span>
+                </div>
+                <!-- 清除效果复选框 -->
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">🧹 清除效果</label>
+                    <input type="checkbox" id="foodClearEffects" style="width:18px;height:18px;accent-color:#4a8af4;cursor:pointer;">
+                    <span style="color:#556;font-size:12px;">(食用后清除所有状态效果，勾选则忽略上述食用效果)</span>
+                </div>
+                <!-- 冷却时间输入框 -->
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">⏳ 冷却时间</label>
+                    <input type="number" id="foodUseCooldown" placeholder="空" min="0" step="0.1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(空则不设置冷却)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 食用效果 -->
+        <div id="food-effect" class="food-sub-panel" style="display:none;">
+            <div class="enchant-controls">
+                <!-- 第一行：效果类型 -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">效果类型</label>
+                    <select id="effectTypeSelect" style="flex:1; padding:6px 12px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;cursor:pointer;">
+                        <option value="none">无</option>
+                        <option value="effect" selected>给予状态效果</option>
+                        <option value="clear">清除状态效果</option>
+                        <option value="remove">移除状态效果</option>
+                        <option value="teleport">随机传送</option>
+                        <option value="teleport_randomly">随机传送 (新版)</option>
+                        <option value="clear_all_effects">清除所有效果</option>
+                    </select>
+                </div>
+
+                <!-- 第二行：效果搜索 -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">效果ID</label>
+                    <div style="position:relative; flex:1;">
+                        <input type="text" id="effectSearch" placeholder="搜索或输入效果ID..." style="width:100%;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                        <div id="effectSuggestions" class="suggestions-dropdown" style="display:none;"></div>
+                    </div>
+                    <span style="color:#556;font-size:12px;white-space:nowrap;">支持模组ID</span>
+                </div>
+
+                <!-- 第三行：概率 和 直径 -->
+                <div style="display:flex; flex-wrap:wrap; gap:12px 20px; margin-bottom:10px;">
+                    <div style="display:flex; align-items:center; gap:6px; flex:1 1 200px;">
+                        <span style="color:#556;font-size:12px;white-space:nowrap;">概率 (0~1)：</span>
+                        <input type="number" id="effectProbability" placeholder="空" min="0" max="1" step="0.01" style="width:80px;padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px; flex:1 1 200px;">
+                        <span style="color:#556;font-size:12px;white-space:nowrap;">直径 (≥1)：</span>
+                        <input type="number" id="effectDiameter" placeholder="空" min="1" step="1" style="width:80px;padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    </div>
+                </div>
+
+                <!-- 第四行：持续时间 和 等级 -->
+                <div style="display:flex; flex-wrap:wrap; gap:12px 20px; margin-bottom:12px;">
+                    <div style="display:flex; align-items:center; gap:6px; flex:1 1 200px;">
+                        <span style="color:#556;font-size:12px;white-space:nowrap;">持续时间 (刻)：</span>
+                        <input type="number" id="effectDuration" placeholder="空" min="1" step="1" style="width:80px;padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                        <span style="color:#445;font-size:10px;">(20刻=1秒)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px; flex:1 1 200px;">
+                        <span style="color:#556;font-size:12px;white-space:nowrap;">等级 (0=I)：</span>
+                        <input type="number" id="effectAmplifier" placeholder="空" min="0" step="1" style="width:80px;padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    </div>
+                </div>
+
+                <!-- 添加按钮 -->
+                <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+                    <button id="addEffectBtn" style="padding:6px 24px;border-radius:6px;border:1px solid #2a6af4;background:transparent;color:#4a8af4;cursor:pointer;font-size:14px;">➕ 添加效果</button>
+                </div>
+
+                <!-- 效果列表 -->
+                <div id="effectList" style="display:flex;flex-direction:column;gap:6px;min-height:30px;padding:4px 0;width:100%;">
+                    <!-- 效果标签 -->
+                </div>
+                <div style="color:#556;font-size:12px;margin-top:4px;">💡 选择“给予状态效果”时，需填写持续时间和等级</div>
+            </div>
+        </div>
+
+        <!-- 工具规则 -->
+        <div id="food-tool" class="food-sub-panel" style="display:none;">
+            <div class="enchant-controls">
+                <!-- 启用工具规则 -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #2a3a5a;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;">🔧 启用工具规则</label>
+                    <input type="checkbox" id="toolEnabled" style="width:18px;height:18px;accent-color:#4a8af4;cursor:pointer;">
+                    <span style="color:#556;font-size:12px;">(勾选后下方设置生效)</span>
+                </div>
+
+                <!-- 默认挖掘速度 -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">⛏️ 默认挖掘速度</label>
+                    <input type="number" id="toolDefaultSpeed" placeholder="空" min="0" step="0.1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(空则使用默认值 1.0)</span>
+                </div>
+
+                <!-- 每方块耐久消耗 -->
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #2a3a5a;">
+                    <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:90px;">🔨 每方块耐久消耗</label>
+                    <input type="number" id="toolDamagePerBlock" placeholder="空" min="0" step="1" style="width:120px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <span style="color:#556;font-size:12px;">(空则使用默认值 1)</span>
+                </div>
+
+                <!-- 添加目标方块规则 -->
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+                    <div style="position:relative; flex:1; min-width:140px;">
+                        <input type="text" id="toolBlockSearch" placeholder="搜索方块ID或名称..." style="width:100%;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                        <div id="toolBlockSuggestions" class="suggestions-dropdown" style="display:none;"></div>
+                    </div>
+                    <input type="number" id="toolRuleSpeed" placeholder="速度" min="0" step="0.1" style="width:80px;padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+                    <select id="toolRuleCorrectDrop" style="padding:5px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;cursor:pointer;">
+                        <option value="true">正确掉落</option>
+                        <option value="false">不正确掉落</option>
+                    </select>
+                    <button id="addToolRuleBtn" style="padding:4px 14px;border-radius:6px;border:1px solid #2a6af4;background:transparent;color:#4a8af4;cursor:pointer;font-size:13px;">➕ 添加</button>
+                </div>
+
+                <div id="toolRuleList" style="display:flex;flex-direction:column;gap:6px;min-height:30px;padding:4px 0;width:100%;">
+                    <!-- 规则标签 -->
+                </div>
+                <div style="color:#556;font-size:12px;margin-top:4px;">💡 添加的规则将覆盖该方块的默认挖掘行为</div>
+            </div>
+        </div>
+    </div>
+</div>

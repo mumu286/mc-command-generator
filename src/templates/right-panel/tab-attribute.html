@@ -1,0 +1,67 @@
+<div id="tab-attribute" class="tab-pane">
+    <div class="enchant-controls">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:8px;">
+            <select id="attrTypeSelect" style="padding:6px 12px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;min-width:150px;">
+                <optgroup label="⚔️ 战斗">
+                    <option value="generic.attack_damage">攻击伤害</option>
+                    <option value="generic.attack_speed">攻击速度</option>
+                    <option value="generic.attack_knockback">攻击击退</option>
+                    <option value="generic.sweeping_damage_ratio">横扫伤害比例</option>
+                </optgroup>
+                <optgroup label="🛡️ 防御">
+                    <option value="generic.armor">护甲值</option>
+                    <option value="generic.armor_toughness">护甲韧性</option>
+                    <option value="generic.knockback_resistance">击退抗性</option>
+                </optgroup>
+                <optgroup label="🏃 移动">
+                    <option value="generic.movement_speed">移动速度</option>
+                    <option value="generic.flying_speed">飞行速度</option>
+                    <option value="generic.jump_strength">跳跃强度</option>
+                    <option value="generic.step_height">跨越高度</option>
+                    <option value="generic.fall_damage_multiplier">掉落伤害倍率</option>
+                    <option value="generic.safe_fall_distance">安全掉落距离</option>
+                    <option value="generic.sneaking_speed">潜行速度</option>
+                    <option value="generic.water_movement_efficiency">水中移动效率</option>
+                    <option value="generic.movement_efficiency">移动效率</option>
+                </optgroup>
+                <optgroup label="⛏️ 交互">
+                    <option value="generic.block_break_speed">方块破坏速度</option>
+                    <option value="generic.submerged_mining_speed">水下挖掘速度</option>
+                    <option value="generic.block_interaction_range">方块交互距离</option>
+                    <option value="generic.entity_interaction_range">实体交互距离</option>
+                </optgroup>
+                <optgroup label="❤️ 生命">
+                    <option value="generic.max_health">最大生命值</option>
+                    <option value="generic.luck">幸运值</option>
+                </optgroup>
+                <optgroup label="🧬 特殊">
+                    <option value="generic.gravity">重力</option>
+                    <option value="generic.scale">体型缩放</option>
+                    <option value="generic.follow_range">跟随范围</option>
+                    <option value="generic.tempt_range">引诱范围</option>
+                </optgroup>
+            </select>
+            <input type="text" id="attrCustomId" placeholder="自定义ID" style="padding:6px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;min-width:140px;">
+            <input type="number" id="attrAmountInput" value="1" step="0.1" style="width:70px;padding:6px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;">
+            <select id="attrOperationSelect" style="padding:6px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;width:100px;">
+                <option value="0">相加</option>
+                <option value="1">乘百分比</option>
+                <option value="2">乘 (最终)</option>
+            </select>
+            <select id="attrSlotSelect" style="padding:6px 8px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;width:80px;">
+                <option value="">任意</option>
+                <option value="mainhand">主手</option>
+                <option value="offhand">副手</option>
+                <option value="head">头部</option>
+                <option value="chest">胸部</option>
+                <option value="legs">腿部</option>
+                <option value="feet">脚部</option>
+            </select>
+            <button id="addAttrBtn" style="padding:4px 14px;border-radius:6px;border:1px solid #2a6af4;background:transparent;color:#4a8af4;cursor:pointer;font-size:13px;">➕ 添加</button>
+        </div>
+        <div id="attrList" style="display:flex;flex-direction:column;gap:6px;min-height:30px;padding:4px 0;width:100%;">
+            <!-- 属性标签 -->
+        </div>
+        <div style="color:#556;font-size:12px;margin-top:4px;">💡 在“自定义ID”框中输入任意属性ID（如 <code>mod:custom_attr</code>）即可添加模组属性</div>
+    </div>
+</div>

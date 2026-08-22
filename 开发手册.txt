@@ -1,0 +1,7 @@
+cd C:\Users\21733\Desktop\mc-command-generator
+
+
+set ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/
+
+
+npx electron-forge make --platform=win32 --arch=x64

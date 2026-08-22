@@ -1,0 +1,30 @@
+<div id="tab-base" class="tab-pane">
+    <div class="enchant-controls">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+            <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">💎 稀有度</label>
+            <select id="raritySelect" style="padding:6px 14px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;min-width:140px;cursor:pointer;">
+                <option value="">默认</option>
+                <option value="common">普通</option>
+                <option value="uncommon">罕见</option>
+                <option value="rare">稀有</option>
+                <option value="epic">史诗</option>
+            </select>
+            <span style="color:#556;font-size:12px;margin-left:8px;">💡 影响物品名称的颜色</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+            <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">🔧 最大耐久</label>
+            <input type="number" id="maxDamageInput" placeholder="空" min="1" max="2147483647" step="1" style="width:160px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+            <span style="color:#556;font-size:12px;">(1 ~ 2147483647)</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+            <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">📦 最大堆叠</label>
+            <input type="number" id="maxStackInput" placeholder="空" min="1" max="99" step="1" style="width:160px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+            <span style="color:#556;font-size:12px;">(1-99, 仅1.21+生效)</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+            <label style="color:#b0c4de;font-weight:600;font-size:14px;min-width:80px;">🔨 修复消耗</label>
+            <input type="number" id="repairCostInput" placeholder="空" min="0" max="2147483647" step="1" style="width:160px;padding:5px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;outline:none;">
+            <span style="color:#556;font-size:12px;">(0 ~ 2147483647)</span>
+        </div>
+    </div>
+</div>

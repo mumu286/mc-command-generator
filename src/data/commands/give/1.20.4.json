@@ -1,0 +1,34 @@
+{
+  "command": "give",
+  "syntax": "give <targets> <item> [<count>] [<nbt>]",
+  "parameters": [
+    {
+      "name": "targets",
+      "type": "selector",
+      "required": true,
+      "default": "@s",
+      "description": "目标玩家"
+    },
+    {
+      "name": "item",
+      "type": "item",
+      "required": true,
+      "description": "物品ID"
+    },
+    {
+      "name": "count",
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "min": 1,
+      "max": 6400,
+      "description": "数量"
+    },
+    {
+      "name": "nbt",
+      "type": "nbt",
+      "required": false,
+      "description": "NBT数据（如附魔、名称等）"
+    }
+  ]
+}

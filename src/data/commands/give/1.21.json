@@ -1,0 +1,34 @@
+{
+  "command": "give",
+  "syntax": "give <targets> <item> [<count>] [<components>]",
+  "parameters": [
+    {
+      "name": "targets",
+      "type": "selector",
+      "required": true,
+      "default": "@s",
+      "description": "目标玩家"
+    },
+    {
+      "name": "item",
+      "type": "item",
+      "required": true,
+      "description": "物品ID"
+    },
+    {
+      "name": "count",
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "min": 1,
+      "max": 6400,
+      "description": "数量"
+    },
+    {
+      "name": "components",
+      "type": "components",
+      "required": false,
+      "description": "物品堆叠组件（如附魔、名称、属性等）"
+    }
+  ]
+}

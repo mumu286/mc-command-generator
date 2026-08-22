@@ -1,0 +1,216 @@
+<div class="left-panel">
+    <!-- 标题 -->
+    <div id="header-container"></div>
+
+    <div class="control-group">
+        <!-- 版本 -->
+        <div class="control-row">
+            <label for="versionDisplay">🎯 版本</label>
+            <div class="version-select-wrapper">
+                <div id="versionDisplay" class="version-display">26.2 (最新)</div>
+                <div id="versionDropdown" class="version-dropdown" style="display:none;">
+                    <div class="version-option" data-value="1.20.2">1.20.2</div>
+                    <div class="version-option" data-value="1.20.3">1.20.3</div>
+                    <div class="version-option" data-value="1.20.4">1.20.4 (旧版NBT)</div>
+                    <div class="version-option" data-value="1.20.5">1.20.5</div>
+                    <div class="version-option" data-value="1.20.6">1.20.6</div>
+                    <div class="version-option" data-value="1.21">1.21 (物品组件)</div>
+                    <div class="version-option" data-value="1.21.1">1.21.1</div>
+                    <div class="version-option" data-value="1.21.2">1.21.2</div>
+                    <div class="version-option" data-value="1.21.3">1.21.3</div>
+                    <div class="version-option" data-value="1.21.4">1.21.4</div>
+                    <div class="version-option" data-value="1.21.5">1.21.5</div>
+                    <div class="version-option" data-value="1.21.6">1.21.6</div>
+                    <div class="version-option" data-value="1.21.7">1.21.7</div>
+                    <div class="version-option" data-value="1.21.8">1.21.8</div>
+                    <div class="version-option" data-value="1.21.9">1.21.9</div>
+                    <div class="version-option" data-value="1.21.10">1.21.10</div>
+                    <div class="version-option" data-value="1.21.11">1.21.11</div>
+                    <div class="version-option" data-value="26.1">26.1</div>
+                    <div class="version-option" data-value="26.2" selected>26.2 (最新)</div>
+                </div>
+                <!-- 隐藏的 select，供其他代码通过 versionSelect.value 获取值 -->
+                <select id="versionSelect" style="display:none;">
+                    <option value="1.20.2">1.20.2</option>
+                    <option value="1.20.3">1.20.3</option>
+                    <option value="1.20.4">1.20.4 (旧版NBT)</option>
+                    <option value="1.20.5">1.20.5</option>
+                    <option value="1.20.6">1.20.6</option>
+                    <option value="1.21">1.21 (物品组件)</option>
+                    <option value="1.21.1">1.21.1</option>
+                    <option value="1.21.2">1.21.2</option>
+                    <option value="1.21.3">1.21.3</option>
+                    <option value="1.21.4">1.21.4</option>
+                    <option value="1.21.5">1.21.5</option>
+                    <option value="1.21.6">1.21.6</option>
+                    <option value="1.21.7">1.21.7</option>
+                    <option value="1.21.8">1.21.8</option>
+                    <option value="1.21.9">1.21.9</option>
+                    <option value="1.21.10">1.21.10</option>
+                    <option value="1.21.11">1.21.11</option>
+                    <option value="26.1">26.1</option>
+                    <option value="26.2" selected>26.2 (最新)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 目标 -->
+        <div class="control-row">
+            <label for="targetSelect">👤 目标</label>
+            <select id="targetSelect">
+                <option value="@s" selected>@s (自己)</option>
+                <option value="@p">@p (最近玩家)</option>
+                <option value="@a">@a (所有玩家)</option>
+                <option value="@r">@r (随机玩家)</option>
+                <option value="@e[type=player]">@e[type=player] (所有实体中的玩家)</option>
+            </select>
+            <span style="color:#556;font-size:13px;margin-left:8px;">或输入玩家名</span>
+            <input type="text" id="targetManual" placeholder="手动输入..." style="width:120px;padding:6px 10px;border-radius:6px;border:1px solid #2a3a5a;background:#0f1a30;color:#e8e8e8;font-size:13px;">
+        </div>
+
+        <!-- 物品 -->
+        <div class="control-row">
+            <label for="itemSearch">📦 物品</label>
+            <div class="item-search-wrapper">
+                <input type="text" id="itemSearch" placeholder="输入物品名或ID搜索..." value="minecraft:diamond_sword" autocomplete="off">
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+        </div>
+
+        <!-- 数量 -->
+        <div class="control-row">
+            <label for="countInput">🔢 数量</label>
+            <input type="number" id="countInput" value="1" min="1" max="6400">
+            <span style="color:#556;font-size:13px;margin-left:4px;">(1 ~ 6400)</span>
+        </div>
+
+        <!-- 耐久度 -->
+        <div class="control-row">
+            <label for="damageInput">🔧 剩余耐久度</label>
+            <input type="number" id="damageInput" value="0" step="1" min="0">
+            <span style="color:#556;font-size:13px;margin-left:4px;">(负数无效)</span>
+            <label style="color:#889;font-size:13px;margin-left:12px;">
+                <input type="checkbox" id="unbreakableCheck"> ✨ 无法破坏
+            </label>
+            <span id="unbreakableHint" style="color:#a85;font-size:12px;display:none;margin-left:4px;">
+                ⚠️ 耐久度将被忽略
+            </span>
+        </div>
+
+        <!-- ===== 三个文本字段 ===== -->
+        <div class="text-fields">
+            <!-- 显示名称 -->
+            <div class="text-field-group">
+                <div class="text-field-row">
+                    <label>🏷️ 显示名称</label>
+                    <input type="text" id="displayNameInput" placeholder="输入显示名称..." value="">
+                </div>
+                <div class="style-toolbar" data-target="displayName">
+                    <label><input type="checkbox" class="style-bold"> 粗</label>
+                    <label><input type="checkbox" class="style-italic"> 斜</label>
+                    <label><input type="checkbox" class="style-underline"> 下</label>
+                    <label><input type="checkbox" class="style-strikethrough"> 删</label>
+                    <label><input type="checkbox" class="style-obfuscated"> 乱</label>
+                    <select class="style-color">
+                        <option value="white">白</option>
+                        <option value="light_gray">浅灰</option>
+                        <option value="gray">灰</option>
+                        <option value="black">黑</option>
+                        <option value="red">红</option>
+                        <option value="dark_red">深红</option>
+                        <option value="orange">橙</option>
+                        <option value="gold">金</option>
+                        <option value="yellow">黄</option>
+                        <option value="green">绿</option>
+                        <option value="dark_green">深绿</option>
+                        <option value="aqua">湖蓝</option>
+                        <option value="dark_aqua">深湖蓝</option>
+                        <option value="blue">蓝</option>
+                        <option value="dark_blue">深蓝</option>
+                        <option value="purple">紫</option>
+                        <option value="dark_purple">深紫</option>
+                        <option value="pink">粉</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 物品名称 -->
+            <div class="text-field-group">
+                <div class="text-field-row">
+                    <label>📛 物品名称</label>
+                    <input type="text" id="itemNameInput" placeholder="输入物品名称..." value="">
+                </div>
+                <div class="style-toolbar" data-target="itemName">
+                    <label><input type="checkbox" class="style-bold"> 粗</label>
+                    <label><input type="checkbox" class="style-italic"> 斜</label>
+                    <label><input type="checkbox" class="style-underline"> 下</label>
+                    <label><input type="checkbox" class="style-strikethrough"> 删</label>
+                    <label><input type="checkbox" class="style-obfuscated"> 乱</label>
+                    <select class="style-color">
+                        <option value="white">白</option>
+                        <option value="light_gray">浅灰</option>
+                        <option value="gray">灰</option>
+                        <option value="black">黑</option>
+                        <option value="red">红</option>
+                        <option value="dark_red">深红</option>
+                        <option value="orange">橙</option>
+                        <option value="gold">金</option>
+                        <option value="yellow">黄</option>
+                        <option value="green">绿</option>
+                        <option value="dark_green">深绿</option>
+                        <option value="aqua">湖蓝</option>
+                        <option value="dark_aqua">深湖蓝</option>
+                        <option value="blue">蓝</option>
+                        <option value="dark_blue">深蓝</option>
+                        <option value="purple">紫</option>
+                        <option value="dark_purple">深紫</option>
+                        <option value="pink">粉</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 物品描述 -->
+            <div class="text-field-group">
+                <div class="text-field-row">
+                    <label>📝 物品描述</label>
+                    <input type="text" id="loreInput" placeholder="输入物品描述..." value="">
+                </div>
+                <div class="style-toolbar" data-target="lore">
+                    <label><input type="checkbox" class="style-bold"> 粗</label>
+                    <label><input type="checkbox" class="style-italic"> 斜</label>
+                    <label><input type="checkbox" class="style-underline"> 下</label>
+                    <label><input type="checkbox" class="style-strikethrough"> 删</label>
+                    <label><input type="checkbox" class="style-obfuscated"> 乱</label>
+                    <select class="style-color">
+                        <option value="white">白</option>
+                        <option value="light_gray">浅灰</option>
+                        <option value="gray">灰</option>
+                        <option value="black">黑</option>
+                        <option value="red">红</option>
+                        <option value="dark_red">深红</option>
+                        <option value="orange">橙</option>
+                        <option value="gold">金</option>
+                        <option value="yellow">黄</option>
+                        <option value="green">绿</option>
+                        <option value="dark_green">深绿</option>
+                        <option value="aqua">湖蓝</option>
+                        <option value="dark_aqua">深湖蓝</option>
+                        <option value="blue">蓝</option>
+                        <option value="dark_blue">深蓝</option>
+                        <option value="purple">紫</option>
+                        <option value="dark_purple">深紫</option>
+                        <option value="pink">粉</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 预览区 -->
+        <div class="preview-area">
+            <div class="preview-label">👁️ 预览</div>
+            <div class="preview-content" id="previewContent">
+                <span style="color:#556;font-style:italic;">输入文本后预览效果</span>
+            </div>
+        </div>
+    </div>
+</div>
