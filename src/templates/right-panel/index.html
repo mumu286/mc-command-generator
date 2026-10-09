@@ -11,4 +11,15 @@
     <div class="tab-content" id="tabContentContainer">
         <!-- 各选项卡将由 JavaScript 动态加载 -->
     </div>
+
+    <!-- 历史记录弹窗（位置/尺寸由 CSS 控制，默认隐藏） -->
+    <div id="historyPanel" style="display:none;">
+        <div class="history-header">
+            <span>🕘 生成历史</span>
+            <button class="history-close-btn" id="historyCloseBtn" type="button">✕</button>
+        </div>
+        <div class="history-list" id="historyList">
+            <!-- 历史条目由 JS 渲染 -->
+        </div>
+    </div>
 </div>

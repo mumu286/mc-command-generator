@@ -10,6 +10,7 @@ import { getBlocks } from '../blocks.js';
 import { getFieldStyle } from './helpers.js';
 import { getFoodEffects } from './food.js';
 import { getToolRules } from './tools.js';
+import { addToHistory } from './history.js';
 
 // 检查不支持的功能
 function getUnsupportedFeatures(version, config) {
@@ -42,7 +43,6 @@ function getUnsupportedFeatures(version, config) {
     }
     return unsupported;
 }
-
 
 export function setupGenerate(
     generateBtn,
@@ -84,8 +84,8 @@ export function setupGenerate(
         const unbreakable = unbreakableCheck ? unbreakableCheck.checked : false;
         const glint = glintCheck ? glintCheck.checked : false;
         const rarity = raritySelect ? raritySelect.value : '';
-        const maxStack = maxStackInput ? parseInt(maxStackInput.value) || null : null;
         const maxDamage = maxDamageInput ? parseInt(maxDamageInput.value) || null : null;
+        const maxStack = maxStackInput ? parseInt(maxStackInput.value) || null : null;
         const repairCost = repairCostInput ? parseInt(repairCostInput.value) || null : null;
 
         const nutrition = foodNutrition && foodNutrition.value.trim() !== '' ? parseInt(foodNutrition.value) : null;
@@ -167,6 +167,10 @@ export function setupGenerate(
 
         try {
             const command = generateGive(version, config);
+
+            // ---------- 记录到历史（附带完整 config 以便生成描述） ----------
+            addToHistory(command, config);
+
             const unsupported = getUnsupportedFeatures(version, config);
             let displayHtml = command;
             if (unsupported.length > 0) {

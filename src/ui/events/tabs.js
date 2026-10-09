@@ -5,9 +5,10 @@
 import { resetFoodSubTabs } from './utils.js';
 
 export function setupTabSwitching() {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    // 排除历史按钮（它只弹窗，不切换面板）
+    document.querySelectorAll('.tab-btn:not(.history-btn)').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn:not(.history-btn)').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const tabId = btn.dataset.tab;
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));

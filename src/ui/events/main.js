@@ -11,6 +11,7 @@ import { setupVersionSwitch, setupUnbreakable } from './misc.js';
 import { setupGenerate } from './generate.js';
 import { setupCopy } from './copy.js';
 import { setupTabSwitching, setupFoodSubTabs } from './tabs.js';
+import { setupHistoryPanel } from './history.js';
 
 export function setupEvents() {
     const dom = getDOM();
@@ -137,6 +138,9 @@ export function setupEvents() {
 
     // ---------- 食物子板块切换 ----------
     setupFoodSubTabs();
+
+    // ---------- 历史记录弹窗 ----------
+    setupHistoryPanel();
 
     // ========== 自定义版本下拉交互 ==========
     const versionDisplay = document.getElementById('versionDisplay');
